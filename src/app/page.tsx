@@ -61,22 +61,31 @@ export default function Home() {
     });
   }
 
+  const handleReset = () =>{
+    setMyTest('');
+    setAiTest('');
+    setCopied(false);
+  }
+
   return (
     <div className="flex flex-col items-center gap-10 w-full">
       <h1 className="flex text-3xl font-bold">My Grammarly Clone</h1>
       <div className="flex sm:flex-row flex-col gap-10 items-center">
         <div className="flex flex-col">
           <p className="flex font-bold text-4xl">Your Text</p>
-          <textarea className="flex border-[1px] border-slate-600 p-1 rounded-lg min-h-40 min-w-80" placeholder="Write your text here..." onChange={(e)=>(setMyTest(e.target.value))}></textarea>
+          <textarea value={myText} className="flex border-[1px] border-slate-600 p-1 rounded-lg min-h-40 min-w-80" placeholder="Write your text here..." onChange={(e)=>(setMyTest(e.target.value))}></textarea>
         </div>
-        <button className="flex bg-blue-600 text-white font-bold h-10 w-20 justify-center items-center rounded-xl" onClick={handleFix}>FIX</button>
+        <div className="flex flex-col gap-5">
+          <button className="flex bg-blue-600 text-white font-bold h-10 w-20 justify-center items-center rounded-xl" onClick={handleFix}>FIX</button>
+          <button className="flex bg-blue-600 text-white font-bold h-10 w-20 justify-center items-center rounded-xl" onClick={handleReset}>Reset</button>
+        </div>
         <div className="flex flex-col">
           <div className="flex justify-between">
             <p className="flex font-bold text-4xl">Fixed Text</p>
             {aiText && !copied && <img src="/copy.svg" alt="Copy" className="flex cursor-pointer" title="Copy To Clipboard" onClick={copyToClipboard}/>}
             {aiText && copied && <img src="/done.svg" alt="Copy" className="flex cursor-pointer" title="Copy To Clipboard" onClick={copyToClipboard}/>}
           </div>
-          <div className="flex border-[1px] border-slate-600 p-1 rounded-lg min-h-40 min-w-80">
+          <div className="flex border-[1px] border-slate-600 p-1 rounded-lg min-h-40 min-w-80 bg-white">
           {loading ? (
               <p className="flex justify-center items-center z-[1000] fixed top-0 left-0 w-[100vw] h-[100vh] bg-[#ffffffa8] text-3xl font-bold">Loading...</p>
             ) : aiText ? (
