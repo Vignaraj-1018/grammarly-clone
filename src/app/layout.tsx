@@ -22,11 +22,11 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.svg"/>
       </head>
 
-      <body className='flex flex-col justify-between h-[100vh] w-full'>
+      <body className='flex flex-col justify-between h-[100vh] w-[100vw]'>
         <div className="flex">
           {children}
         </div>
-        <footer className="flex items-center justify-center font-bold text-xl">
+        <footer className="flex items-center justify-center text-center font-bold text-xl">
           &copy; {new Date().getFullYear()} Grammarly Clone. All rights reserved.
         </footer>
       </body>
