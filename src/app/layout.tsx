@@ -22,7 +22,7 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.svg"/>
       </head>
 
-      <body className='flex flex-col justify-between h-[100vh] w-[100vw] bg-slate-300'>
+      <body className='flex flex-col justify-between h-[100vh] w-[100vw] bg-gradient-to-b from-blue-200 to-blue-400'>
         <div className="flex">
           {children}
         </div>
