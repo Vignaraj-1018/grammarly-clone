@@ -16,7 +16,21 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      
+      <head>
+        <title>Grammarly Clone</title>
+        <link rel="icon" href="/favicon.svg"/>
+      </head>
+
+      <body className='flex flex-col justify-between h-[100vh] w-full'>
+        <div className="flex">
+          {children}
+        </div>
+        <footer className="flex items-center justify-center font-bold text-xl">
+          &copy; {new Date().getFullYear()} Grammarly Clone. All rights reserved.
+        </footer>
+      </body>
+    
     </html>
   );
 }
