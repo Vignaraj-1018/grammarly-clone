@@ -93,8 +93,8 @@ export default function Home() {
             <li><strong>Download the Extension:</strong> Click the button below to download our extension.</li>
             <li><strong>Extract the Zip File:</strong> Unzip the downloaded file.</li>
             <li><strong>Install in Chrome:</strong> Follow the steps to install the extension in Chrome.</li>
-            <li><strong>Enable the Extension:</strong> Make sure it's enabled in Chrome's extensions settings.</li>
-            <li><strong>Start Using:</strong> Visit a webpage and enjoy the extension's features!</li>
+            <li><strong>Enable the Extension:</strong> Make sure it is enabled in Chrome extensions settings.</li>
+            <li><strong>Start Using:</strong> Visit a webpage and enjoy its features!</li>
         </ol>
         <a href="/chrome-extension.zip" download className="flex p-1 bg-blue-600 rounded-xl text-white font-bold hover:scale-110 w-60 justify-center items-center">Download Extension</a>
       </div>

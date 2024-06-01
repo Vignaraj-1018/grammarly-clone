@@ -27,7 +27,7 @@ export default function RootLayout({
           {children}
         </div>
         <footer className="flex items-center justify-center text-center font-bold text-xl">
-          &copy; {new Date().getFullYear()} Grammarly Clone. All rights reserved.
+          `&copy;` {new Date().getFullYear()} Grammarly Clone. All rights reserved.
         </footer>
       </body>
     
