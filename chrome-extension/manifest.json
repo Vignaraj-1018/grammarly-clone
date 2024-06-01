@@ -1,0 +1,19 @@
+{
+    "manifest_version": 3,
+    "name": "Grammarly Clone Extensions",
+    "description": "Elevate your writing with real-time grammar and spelling corrections as you browse the web, just like the popular Grammarly tool.",
+    "version": "1.0",
+    "action": {
+      "default_popup": "popup.html",
+      "default_icon": "icon48.png"
+    },
+    "permissions": [
+        "activeTab"
+    ],
+    "content_scripts": [
+        {
+            "matches": ["<all_urls>"],
+            "js": ["content.js"]
+        }
+    ]
+}
