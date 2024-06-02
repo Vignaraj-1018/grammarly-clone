@@ -90,7 +90,7 @@ export default function Home() {
           <img src="favicon.svg" alt="GC Icon" className="flex h-12 w-12"/>
           <p className="flex sm:text-5xl text-2xl font-bold">Grammarly</p>
         </div>
-        <div className="flex p-2">
+        <div className="flex p-2 cursor-pointer">
           {!darkTheme && <img src="moon.svg" alt="dark" className="flex h-12 w-12" onClick={applyDarkTheme}/>}
           {darkTheme && <img src="sun.svg" alt="light" className="flex h-12 w-12" onClick={applyLightTheme}/>}
         </div>
@@ -100,7 +100,7 @@ export default function Home() {
           <div className="flex flex-col gap-2 items-center">
             <textarea value={myText} className="flex border-[1px] border-slate-600 p-1 rounded-lg min-h-40 sm:w-[50rem] w-[20rem] text-black" placeholder="Write your text here..." onChange={(e)=>(setMyText(e.target.value))}>
             </textarea>
-            {loading && <p className="flex justify-center items-center z-[1000] fixed top-0 left-0 w-[100vw] h-[100vh] bg-[#ffffff38] text-3xl font-bold">Loading...</p>}
+            {loading && <p className="flex justify-center items-center z-[1000] fixed top-0 left-0 w-[100vw] h-[100vh] dark:bg-[#ffffff38] bg-[#ffffff80] text-3xl font-bold">Loading...</p>}
             {aiText && <div className="flex justify-start gap-3">
               {!copied && <img src="/copy.svg" alt="Copy" className="flex cursor-pointer h-8 w-8" title="Copy To Clipboard" onClick={copyToClipboard}/>}
               {copied && <img src="/done.svg" alt="Copy" className="flex cursor-pointer h-8 w-8" title="Copy To Clipboard" onClick={copyToClipboard}/>}
