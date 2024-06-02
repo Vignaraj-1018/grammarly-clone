@@ -15,7 +15,7 @@ const aiPrompt  = [
       }
     ]
 
-function getFixedText(text){
+function getFixedText(text, inputField, button){
     const originalText = text;
 
     let data = [...aiPrompt,
@@ -27,7 +27,7 @@ function getFixedText(text){
             ]
           }
         ]
-  
+    button.textContent = "Loading...";
     fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=AIzaSyDcy2aF1kneLUlagL3cVGcZV77mbNhGHsI`, {
       method: "POST",
       headers: {
@@ -38,56 +38,50 @@ function getFixedText(text){
     .then(response => response.json())
     .then(data => {
         const fixedText = data.candidates[0].content.parts[0].text;
-        showAboveSelectedText("The Modified Text: " + fixedText);
-        copyToClipboard(fixedText);
+        // showAboveSelectedText("The Modified Text: " + fixedText);
+        // copyToClipboard(fixedText);
+        inputField.value = fixedText;
+        button.textContent = "Fix Grammar";
     })
     .catch(error => {
         console.error("Error:", error);
-        showAboveSelectedText("The Modified Text: " + originalText);
+        // showAboveSelectedText("The Modified Text: " + originalText);
+        inputField.value = originalText;
+        button.textContent = "Fix Grammar";
     });
 }
 
-function copyToClipboard(text) {
-    navigator.clipboard.writeText(text).then(() => {
-        console.log("Text copied to clipboard:", text);
-    }).catch(error => {
-        console.error("Error copying text to clipboard:", error);
+(function() {
+  // Find the input field
+  const inputField = document.querySelector(["textarea","input[type=text]","input"]);
+  console.log(inputField);
+  if (inputField) {
+    // Create the button element
+    const fixGrammarButton = document.createElement("button");
+    fixGrammarButton.textContent = "Fix Grammar";
+    fixGrammarButton.id = "fix-grammar-button";
+
+    const inputRect = inputField.getBoundingClientRect();
+    
+    // Style the button with some margin relative to the input field
+    fixGrammarButton.style.position = "fixed"; // Adjust positioning if needed
+    fixGrammarButton.style.top = (inputRect.top - 40) + "px";
+    fixGrammarButton.style.left = (inputRect.left + 5) + "px";
+    fixGrammarButton.style.zIndex = "9999"; // Ensure button is above other elements
+    fixGrammarButton.style.backgroundColor = "#027E6F";
+    fixGrammarButton.style.color = "white";
+    fixGrammarButton.style.padding = "5px 10px";
+    fixGrammarButton.style.borderRadius = "5px";
+
+    // Append the button to the body (outside main HTML)
+    document.body.appendChild(fixGrammarButton);
+
+    // Add click event listener to the button
+    fixGrammarButton.addEventListener("click", function() {
+      const originalText = inputField.value;
+      getFixedText(originalText, inputField, fixGrammarButton);
     });
-}
-  
-function showAboveSelectedText(text) {
-    const floatingText = document.createElement("div");
-    floatingText.textContent = text;
-    floatingText.style.position = "absolute";
-    floatingText.style.backgroundColor = "rgba(255, 255, 255, 0.9)";
-    floatingText.style.border = "1px solid #ccc";
-    floatingText.style.padding = "5px";
-    floatingText.style.zIndex = "9999";
-    floatingText.style.color = "#000";
-
-    const selection = window.getSelection();
-    if (selection.rangeCount > 0) {
-        const range = selection.getRangeAt(0);
-        const boundingRect = range.getBoundingClientRect();
-
-        floatingText.style.top = (boundingRect.top - floatingText.offsetHeight - boundingRect.height) + "px";
-        floatingText.style.left = boundingRect.left + "px";
-
-        document.body.appendChild(floatingText);
-
-        document.body.addEventListener("mousedown", function removeFloatingText() {
-            if (floatingText && floatingText.parentNode) {
-                floatingText.parentNode.removeChild(floatingText);
-                document.body.removeEventListener("mousedown", removeFloatingText);
-            }
-        });
-    }
-}
-
-document.addEventListener("mouseup", function() {
-    const selectedText = window.getSelection().toString().trim();
-    console.log(selectedText);
-    if (selectedText !== "") {
-        getFixedText(selectedText);
-    }
-});
+  } else {
+    console.log("No input field found on this page.");
+  }
+})();
