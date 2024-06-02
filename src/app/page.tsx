@@ -9,48 +9,20 @@ export default function Home() {
   const [copied, setCopied] = useState(false);
   const [darkTheme, setDarkTheme] = useState(true);
 
-  const aiPrompt  = [
-    {
-      "role":"user",
-      "parts":[
-        {
-          "text": "for every prompt I am providing, you need to rewrite the grammar for me, and you should only send me the corrected version of my prompt only"
-        }
-      ]
-      },
-      {
-        "role": "model",
-        "parts":[
-          {
-          "text": "Sure!"}
-        ]
-      }
-    ]
-
   const handleFix = () => {
     if (myText.length <= 0){
       return;
     }
-    let data = [...aiPrompt,
-      {
-        "role": "user",
-        "parts":[
-          {
-            "text": myText}
-          ]
-        }
-      ]
       
-    let postData = {contents: data};
-    let url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${process.env.NEXT_PUBLIC_API_KEY}`
-    console.log(data, postData);
-    // setAiTest('');
+    let postData = {text: myText};
+    let url = `https://helper-api-vignu.el.r.appspot.com/grammarly/fix`
+    // console.log(postData);
     setLoading(true);
     setCopied(false);
     axios.post(url, postData)
     .then((resp:any)=>{
-      console.log(resp);
-      setMyText(resp.data.candidates[0].content.parts[0].text);
+      // console.log(resp);
+      setMyText(resp.data.result);
       setAiText(true)
       setLoading(false);
     })
