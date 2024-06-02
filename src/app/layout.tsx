@@ -15,18 +15,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="dark">
       
       <head>
         <title>Grammarly Clone</title>
         <link rel="icon" href="/favicon.svg"/>
       </head>
 
-      <body className='flex flex-col justify-between h-[100vh] w-[100vw] bg-gradient-to-b from-blue-200 to-blue-400'>
+      <body className='flex flex-col justify-between h-[100vh] w-[100vw] dark:bg-primary dark:text-white text-primary'>
         <div className="flex">
           {children}
         </div>
-        <footer className="flex items-center justify-center text-center font-bold text-xl">
+        <footer className="flex items-center justify-center text-center p-2 font-bold text-xl border-t-2">
           © {new Date().getFullYear()} Grammarly Clone. All rights reserved.
         </footer>
       </body>
