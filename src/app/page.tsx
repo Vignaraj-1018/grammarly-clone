@@ -92,7 +92,7 @@ export default function Home() {
           {darkTheme && <img src="sun.svg" alt="light" className="flex h-12 w-12" onClick={applyLightTheme}/>}
         </div>
       </div>
-      <div className="flex flex-col gap-10 justify-center items-center w-full h-full p-10">
+      <div className="flex flex-col gap-40 justify-center items-center w-full h-full p-10">
         <div className="flex flex-col items-center gap-4">
           <div className="flex flex-col gap-2 items-center">
             <textarea value={myText} className="flex border-[1px] border-slate-600 p-1 rounded-lg min-h-40 sm:w-[50rem] w-[20rem]" placeholder="Write your text here..." onChange={(e)=>(setMyText(e.target.value))}>
