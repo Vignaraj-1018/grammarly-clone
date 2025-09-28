@@ -15,7 +15,7 @@ export default function Home() {
     }
       
     let postData = {text: myText};
-    let url = `https://helper-api-vignu.el.r.appspot.com/grammarly/fix`
+    let url = `https://api.vignaraj.in/grammarly/fix`
     // console.log(postData);
     setLoading(true);
     setCopied(false);

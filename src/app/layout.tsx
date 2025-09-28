@@ -9,10 +9,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   const sendViewAnalytics=()=>{
-    const url = "https://helper-api-vignu.el.r.appspot.com/my_website_analytics/website_view";
+    const url = "https://api.vignaraj.in/my_website_analytics/website_view";
     const data ={
       "name":"Grammarly Clone",
-      "url":"https://grammarly-clone-vignu.netlify.app/"
+      "url":"https://grammarly-clone.vignaraj.in/"
     }
     axios.post(url,data)
     .then((resp)=>{

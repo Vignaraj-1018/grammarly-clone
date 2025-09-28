@@ -1,7 +1,7 @@
 function getFixedText(text, inputField, button){
     const originalText = text;
     button.textContent = "Loading...";
-    fetch(`https://helper-api-vignu.el.r.appspot.com/grammarly/fix`, {
+    fetch(`https://api.vignaraj.in/grammarly/fix`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
